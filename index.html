@@ -31,12 +31,12 @@
         <div class="timbul">
           <h4 class="title">Nisab</h4>
           <p class="description">
-            Batas minimum harta wajib zakat. Nisab Zakat Penghasilan
+            Batas minimum harta wajib zakat. Nisab Zakat Penghasilan (per tahun)
             setara dengan 85 gram emas
           </p>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Rp</span>
-            <input type="number" class="form-control text-end" id="emas" placeholder="Harga emas per gram" required />
+            <input type="number" class="form-control text-end" id="emas" defaultvalue="0" placeholder="Harga emas per gram" required />
           </div>
           <a href="https://harga-emas.org/">cek harga emas</a>
           <h6 style="text-align: right;" id="nisab">Nisab Zakat</h6>
@@ -47,16 +47,16 @@
         <div class="timbul">
           <h4 class="title">Pemasukan</h4>
           <p class="description">
-            Harta yang diterima, baik pemasukan rutin/pokok maupun
+            Harta yang diterima tiap bulan, baik pemasukan rutin/pokok maupun
             pemasukan tambahan lainnya
           </p>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Rp</span>
-            <input type="number" class="form-control text-end" id="masuk0" placeholder="Pemasukan pokok" required />
+            <input type="number" class="form-control text-end" id="masuk0" defaultvalue="0" placeholder="Pemasukan pokok" required />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Rp</span>
-            <input type="number" class="form-control text-end" id="masuk1" placeholder="bonus, hadiah, THR" required />
+            <input type="number" class="form-control text-end" id="masuk1" defaultvalue="0" placeholder="bonus, hadiah, THR" />
           </div>
         </div>
       </div>
@@ -64,16 +64,16 @@
         <div class="timbul">
           <h4 class="title">Pengeluaran</h4>
           <p class="description">
-            Harta yang dikeluarkan untuk memenuhi kebutuhan pokok maupun
+            Harta yang dikeluarkan tiap bulan untuk memenuhi kebutuhan pokok maupun
             membayar tanggungan
           </p>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Rp</span>
-            <input type="number" class="form-control text-end" id="keluar0" placeholder="Pengeluaran pokok" required />
+            <input type="number" class="form-control text-end" id="keluar0" defaultvalue="0" placeholder="Pengeluaran pokok" required />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Rp</span>
-            <input type="number" class="form-control text-end" id="keluar1" placeholder="cicilan, hutang" required />
+            <input type="number" class="form-control text-end" id="keluar1" defaultvalue="0" placeholder="cicilan, hutang" />
           </div>
         </div>
       </div>
@@ -101,7 +101,7 @@
             <div class="d-grid">
               <button class="btn" type="button" onclick="hitung()">Hitung Zakat</button>
             </div>
-            <h2 class="hsl-zakat" id="hasil">Zakat yang harus dibayar</h2>
+            <h2 style="text-align: center;" class="hsl-zakat" id="hasil">Zakat yang harus dibayar</h2>
           </div>
         </div>
       </div>
@@ -120,18 +120,25 @@
     </script>
     <script>
       function hitung() {
+        var emas = document.getElementById("emas").value;
+        var nisab = (parseFloat(emas) * 85)/12;
+
         var masuk0 = document.getElementById("masuk0").value;
         var masuk1 = document.getElementById("masuk1").value;
         var keluar0 = document.getElementById("keluar0").value;
         var keluar1 = document.getElementById("keluar1").value;
-        // var hasil = ((parseFloat(masuk0) + parseFloat(masuk1)) - (parseFloat(keluar0) + parseFloat(keluar1))) * (2.5 / 100);
+        var hasil = ((parseFloat(masuk0) + parseFloat(masuk1)) - (parseFloat(keluar0) + parseFloat(keluar1))) * (2.5 / 100);
 
         // Conditional
         if (emas == "" || masuk0 == "" || keluar0 == "") {
-          alert("Masukkan angka terlebih dahulu");
+          // alert("Masukkan angka terlebih dahulu");
+          document.getElementById("hasil").innerHTML = "Masukkan angka terlebih dulu";
+        }
+        else if(hasil < nisab) {
+          document.getElementById("hasil").innerHTML = "Anda tidak wajib membayar zakat";
         }
         else {
-          var hasil = ((parseFloat(masuk0) + parseFloat(masuk1)) - (parseFloat(keluar0) + parseFloat(keluar1))) * (2.5 / 100);
+          // var hasil = ((parseFloat(masuk0) + parseFloat(masuk1)) - (parseFloat(keluar0) + parseFloat(keluar1))) * (2.5 / 100);
           document.getElementById("hasil").innerHTML = hasil;
         }
       }
