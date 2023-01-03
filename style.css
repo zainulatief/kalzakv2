@@ -1,0 +1,44 @@
+body {
+  background-color: #b5d5c5;
+}
+.judul {
+  margin: 100px 10px 25px 10px;
+  /* padding: 50px 25px 25px;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #c2e4d3, #a3c0b1);
+  box-shadow: 15px 15px 30px #8fa89c, -15px -15px 30px #dbffee; */
+}
+.timbul {
+  margin: 25px 10px;
+  padding: 30px 25px 25px;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #c2e4d3, #a3c0b1);
+  box-shadow: 15px 15px 30px #8fa89c, -15px -15px 30px #dbffee;
+}
+.tenggelam0 {
+  margin: 25px 10px;
+  padding: 25px 25px 25px;
+  border-radius: 25px;
+  background: #b5d5c5;
+  box-shadow: inset 10px 10px 20px #8fa89c, inset -10px -10px 20px #dbffee;
+}
+.form-control {
+  background-color: #c2e4d3;
+}
+$basic-addon1 {
+  background-color: #c2e4d3;
+}
+.btn {
+  margin: 10px 0px;
+  padding: 25px;
+  font-size: x-large;
+  color: #2d9662;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(145deg, #c2e4d3, #a3c0b1);
+  box-shadow: 15px 15px 30px #8fa89c, -15px -15px 30px #dbffee;
+}
+.hsl-zakat {
+  padding-top: 15px;
+  color: #2d9662;
+}

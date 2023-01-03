@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="img/donation.png" rel="icon" />
+  <title>Kalkulator Zakat</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg">
+        <div class="judul">
+          <h1>Kalkulator Zakat</h1>
+          <p>
+            Ngitung zakat nggak pake pusing
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-6">
+        <div class="timbul">
+          <h4 class="title">Nisab</h4>
+          <p class="description">
+            Batas minimum harta wajib zakat. Nisab Zakat Penghasilan
+            setara dengan 85 gram emas
+          </p>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Rp</span>
+            <input type="number" class="form-control text-end" id="emas" placeholder="Harga emas per gram" required />
+          </div>
+          <a href="https://harga-emas.org/">cek harga emas</a>
+          <h6 style="text-align: right;" id="nisab">Nisab Zakat</h6>
+        </div>
+
+      </div>
+      <div class="col-lg-4 col-md-6 mt-4 mt-md-0">
+        <div class="timbul">
+          <h4 class="title">Pemasukan</h4>
+          <p class="description">
+            Harta yang diterima, baik pemasukan rutin/pokok maupun
+            pemasukan tambahan lainnya
+          </p>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Rp</span>
+            <input type="number" class="form-control text-end" id="masuk0" placeholder="Pemasukan pokok" required />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Rp</span>
+            <input type="number" class="form-control text-end" id="masuk1" placeholder="bonus, hadiah, THR" required />
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+        <div class="timbul">
+          <h4 class="title">Pengeluaran</h4>
+          <p class="description">
+            Harta yang dikeluarkan untuk memenuhi kebutuhan pokok maupun
+            membayar tanggungan
+          </p>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Rp</span>
+            <input type="number" class="form-control text-end" id="keluar0" placeholder="Pengeluaran pokok" required />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Rp</span>
+            <input type="number" class="form-control text-end" id="keluar1" placeholder="cicilan, hutang" required />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg">
+        <div class="tenggelam0">
+          <div class="alert">
+            <span class="alert-inner--icon icon-lg"><span class="far fa-thumbs-up"></span></span>
+            <span class="alert-heading">Kenapa harus berzakat?</span>
+            <h3>
+              وَأَقِيمُوا الصَّلَاةَ وَآتُوا الزَّكَاةَ ۚ وَمَا تُقَدِّمُوا لِأَنْفُسِكُمْ مِنْ خَيْرٍ تَجِدُوهُ عِنْدَ
+              اللَّهِ ۗ إِنَّ اللَّهَ بِمَا تَعْمَلُونَ بَصِيرٌ
+            </h3>
+            <p class="description">
+              [2:110] Dan dirikanlah shalat dan tunaikanlah zakat. Dan kebaikan
+              apa saja yang kamu usahakan bagi dirimu, tentu kamu akan mendapat
+              pahala nya pada sisi Allah. Sesungguhnya Alah Maha Melihat apa-apa
+              yang kamu kerjakan.
+            </p>
+            <hr>
+            <div class="d-grid">
+              <button class="btn" type="button" onclick="hitung()">Hitung Zakat</button>
+            </div>
+            <h2 class="hsl-zakat" id="hasil">Zakat yang harus dibayar</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("emas").onkeyup = function() {nisab()}
+      function nisab() {
+        // let x = document.getElementById("nisab");
+        // x.value = document.getElementById("emas") * 85 / 12;
+        var emas = document.getElementById("emas").value;
+        var nisab = (parseFloat(emas) * 85)/12;
+        document.getElementById("nisab").innerHTML = nisab;
+
+        // var nisab = document.getElementById("emas") * 85 / 12;
+      }
+    </script>
+    <script>
+      function hitung() {
+        var masuk0 = document.getElementById("masuk0").value;
+        var masuk1 = document.getElementById("masuk1").value;
+        var keluar0 = document.getElementById("keluar0").value;
+        var keluar1 = document.getElementById("keluar1").value;
+        // var hasil = ((parseFloat(masuk0) + parseFloat(masuk1)) - (parseFloat(keluar0) + parseFloat(keluar1))) * (2.5 / 100);
+
+        // Conditional
+        if (emas == "" || masuk0 == "" || keluar0 == "") {
+          alert("Masukkan angka terlebih dahulu");
+        }
+        else {
+          var hasil = ((parseFloat(masuk0) + parseFloat(masuk1)) - (parseFloat(keluar0) + parseFloat(keluar1))) * (2.5 / 100);
+          document.getElementById("hasil").innerHTML = hasil;
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>
