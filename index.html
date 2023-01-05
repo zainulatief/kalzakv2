@@ -8,6 +8,8 @@
   <title>Kalkulator Zakat</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -36,7 +38,7 @@
           </p>
           <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Rp</span>
-            <input type="number" class="form-control text-end" id="emas" defaultvalue="0" placeholder="Harga emas per gram" required />
+            <input type="number" class="form-control text-end" id="emas" value="0" placeholder="Harga emas per gram" required />
           </div>
           <a href="https://harga-emas.org/">cek harga emas</a>
           <h6 style="text-align: right;" id="nisab">Nisab Zakat</h6>
@@ -106,6 +108,20 @@
         </div>
       </div>
     </div>
+
+    <script>
+      let Set = inputData.Set.split(","); // split array into line items by the comma delimiter
+let Default = inputData.Default; // default value to set for blank/empty/null items
+
+// FOR loop to iterate over each array item
+for (let i = 0; i < Set.length ; i++) {
+  if (Set[i] == "" || Set[i] == null) {
+    Set[i] = Default; // sets default value
+  }
+}
+
+output = [{Set, Default}];
+    </script>
     <script>
       document.getElementById("emas").onkeyup = function() {nisab()}
       function nisab() {
